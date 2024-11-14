@@ -18,6 +18,6 @@ harbor_admin_password: "Harbor12345"
 harbor_external_url: ""
 
 harbor_http_port: 80
-harbor_https_port: 443
+harbor_https_port: ""
 harbor_https_cert: ""
 harbor_https_key: ""
