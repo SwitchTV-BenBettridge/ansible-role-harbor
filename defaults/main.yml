@@ -16,3 +16,8 @@ harbor_admin_password: "Harbor12345"
 # Fill harbor_external_url if you want to enable external proxy.
 # Use either harbor_hostname or harbor_external_url
 harbor_external_url: ""
+
+harbor_http_port: 80
+harbor_https_port: 443
+harbor_https_cert: ""
+harbor_https_key: ""
