@@ -10,15 +10,35 @@ hostname: {{ harbor_hostname }}
 # http related config
 http:
   # port for http, default is 80. If https enabled, this port will redirect to https port
+{% if harbor_http_port == "" %}
   port: 80
+{% else %}
+  port: {{ harbor_http_port }}
+{% endif %}
 
 # https related config
+{% if harbor_https_port == "" %}
 # https:
+{% else %}
+https:
+{% endif %}
 #   # https port for harbor, default is 443
+{% if harbor_https_port == "" %}
 #   port: 443
+{% else %}
+  port: {{ harbor_https_port }}
+{% endif %}
 #   # The path of cert and key files for nginx
+{% if harbor_https_cert == "" %}
 #   certificate: /your/certificate/path
+{% else %}
+  certificate:  {{ harbor_https_cert }}
+{% endif %}
+{% if harbor_https_key == "" %}
 #   private_key: /your/private/key/path
+{% else %}
+  private_key:  {{ harbor_https_key }}
+{% endif %}
 
 # # Uncomment following will enable tls communication between all harbor components
 # internal_tls:
@@ -109,6 +129,13 @@ trivy:
 jobservice:
   # Maximum number of job workers in job service
   max_job_workers: 10
+  # The jobLoggers backend name, only support "STD_OUTPUT", "FILE" and/or "DB"
+  job_loggers:
+    - STD_OUTPUT
+    - FILE
+    # - DB
+  # The jobLogger sweeper duration (ignored if `jobLogger` is `stdout`)
+  logger_sweeper_duration: 1 # days
 
 notification:
   # Maximum retry count for webhook job
